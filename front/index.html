@@ -1,0 +1,245 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Solicitar Suporte - Sistema de Tickets</title>
+    <style>
+      * {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+      }
+
+      body {
+        font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+        background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+        min-height: 100vh;
+        padding: 20px;
+        color: #333;
+      }
+
+      .container {
+        max-width: 600px;
+        margin: 0 auto;
+      }
+
+      nav {
+        background: rgba(255, 255, 255, 0.95);
+        backdrop-filter: blur(10px);
+        padding: 15px 30px;
+        border-radius: 12px;
+        margin-bottom: 30px;
+        box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+        display: flex;
+        gap: 20px;
+        align-items: center;
+      }
+
+      nav a {
+        text-decoration: none;
+        color: #667eea;
+        font-weight: 600;
+        padding: 8px 16px;
+        border-radius: 8px;
+        transition: all 0.3s ease;
+        position: relative;
+      }
+
+      nav a:hover {
+        background: #667eea;
+        color: white;
+        transform: translateY(-2px);
+      }
+
+      nav a.active {
+        background: #667eea;
+        color: white;
+      }
+
+      .card {
+        background: white;
+        border-radius: 16px;
+        padding: 40px;
+        box-shadow: 0 10px 40px rgba(0, 0, 0, 0.2);
+        animation: slideUp 0.5s ease;
+      }
+
+      @keyframes slideUp {
+        from {
+          opacity: 0;
+          transform: translateY(20px);
+        }
+        to {
+          opacity: 1;
+          transform: translateY(0);
+        }
+      }
+
+      h1 {
+        color: #667eea;
+        margin-bottom: 30px;
+        font-size: 2rem;
+        text-align: center;
+      }
+
+      form {
+        display: flex;
+        flex-direction: column;
+        gap: 20px;
+      }
+
+      .form-group {
+        display: flex;
+        flex-direction: column;
+        gap: 8px;
+      }
+
+      label {
+        font-weight: 600;
+        color: #555;
+        font-size: 0.95rem;
+      }
+
+      input,
+      textarea {
+        padding: 12px 16px;
+        border: 2px solid #e0e0e0;
+        border-radius: 8px;
+        font-size: 1rem;
+        font-family: inherit;
+        transition: all 0.3s ease;
+        background: #f8f9fa;
+      }
+
+      input:focus,
+      textarea:focus {
+        outline: none;
+        border-color: #667eea;
+        background: white;
+        box-shadow: 0 0 0 3px rgba(102, 126, 234, 0.1);
+      }
+
+      textarea {
+        resize: vertical;
+        min-height: 120px;
+      }
+
+      button {
+        padding: 14px 24px;
+        background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+        color: white;
+        border: none;
+        border-radius: 8px;
+        font-size: 1rem;
+        font-weight: 600;
+        cursor: pointer;
+        transition: all 0.3s ease;
+        margin-top: 10px;
+        box-shadow: 0 4px 15px rgba(102, 126, 234, 0.4);
+      }
+
+      button:hover {
+        transform: translateY(-2px);
+        box-shadow: 0 6px 20px rgba(102, 126, 234, 0.5);
+      }
+
+      button:active {
+        transform: translateY(0);
+      }
+
+      button:disabled {
+        opacity: 0.6;
+        cursor: not-allowed;
+        transform: none;
+      }
+
+      .success-message {
+        background: #d4edda;
+        color: #155724;
+        padding: 12px 16px;
+        border-radius: 8px;
+        margin-top: 20px;
+        display: none;
+        border-left: 4px solid #28a745;
+      }
+
+      .error-message {
+        background: #f8d7da;
+        color: #721c24;
+        padding: 12px 16px;
+        border-radius: 8px;
+        margin-top: 20px;
+        display: none;
+        border-left: 4px solid #dc3545;
+      }
+
+      @media (max-width: 768px) {
+        .card {
+          padding: 30px 20px;
+        }
+
+        h1 {
+          font-size: 1.5rem;
+        }
+
+        nav {
+          flex-direction: column;
+          gap: 10px;
+        }
+      }
+    </style>
+  </head>
+  <body>
+    <div class="container">
+      <nav>
+        <a href="index.html" class="active">📝 Solicitar</a>
+        <a href="visualizar.html">📋 Visualizar Chamados</a>
+      </nav>
+
+      <div class="card">
+        <h1>🎫 Solicitar Suporte</h1>
+        <form id="formSuporte">
+          <div class="form-group">
+            <label for="nome">Seu Nome:</label>
+            <input
+              type="text"
+              id="nome"
+              required
+              placeholder="Digite seu nome completo" />
+          </div>
+
+          <div class="form-group">
+            <label for="assunto">Assunto:</label>
+            <input
+              type="text"
+              id="assunto"
+              required
+              placeholder="Resumo do problema" />
+          </div>
+
+          <div class="form-group">
+            <label for="descricao">Descrição do Problema:</label>
+            <textarea
+              id="descricao"
+              rows="4"
+              required
+              placeholder="Descreva detalhadamente o problema que você está enfrentando..."></textarea>
+          </div>
+
+          <button type="submit">🚀 Enviar Solicitação</button>
+        </form>
+
+        <div class="success-message" id="successMessage">
+          ✅ Suporte solicitado com sucesso! Seu ticket foi criado.
+        </div>
+
+        <div class="error-message" id="errorMessage">
+          ❌ Erro ao enviar solicitação. Tente novamente.
+        </div>
+      </div>
+    </div>
+
+    <script src="script_solicitar.js"></script>
+  </body>
+</html>
