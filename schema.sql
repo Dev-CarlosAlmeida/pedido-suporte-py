@@ -1,0 +1,10 @@
+CREATE DATABASE IF NOT EXISTS suporte_db;
+USE suporte_db;
+
+CREATE TABLE IF NOT EXISTS chamados (
+    id INT AUTO_INCREMENT PRIMARY KEY,
+    nome_usuario VARCHAR(100) NOT NULL,
+    assunto VARCHAR(150) NOT NULL,
+    descricao TEXT NOT NULL,
+    data_criacao TIMESTAMP DEFAULT CURRENT_TIMESTAMP
+);
